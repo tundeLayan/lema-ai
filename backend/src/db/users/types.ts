@@ -5,9 +5,3 @@ export interface User {
   email: string;
   phone: string;
 }
-
-export type Pagination = {
-  pageNumber: number;
-  pageSize: number;
-  totalUsers: number;
-};
