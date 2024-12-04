@@ -39,7 +39,6 @@ You are required to implement the following backend functionalities:
 - Follow the **Figma design** provided in the Resources section.
 - Ensure **graceful handling of API errors** or unexpected data from the backend.
 - Components and pages should have **error and loading states**.
-- Include **at least one unit test** for the web UI.
 - Emphasize **code reusability** and **separation of concerns** in your components.
 
 ### Users Table
@@ -82,18 +81,10 @@ You are required to implement the following backend functionalities:
 3. **Responsiveness**
    - Ensure the application is responsive and functions well on various screen sizes and devices.
    - Use Tailwind CSS utilities to create responsive layouts.
-4. **Performance Optimization**
-   - Optimize the application for performance, minimizing unnecessary re-renders.
-   - Use React's memoization techniques where applicable.
-   - Efficiently manage list rendering.
-5. **Error Handling**
+4. **Error Handling**
    - Implement robust error handling for API requests and unexpected data.
    - Provide meaningful feedback to the user in case of errors.
    - Use try-catch blocks and handle promise rejections appropriately in your backend.
-6. **Testing**
-   - Include at least one unit test for a critical component or functionality in your frontend code.
-   - Use testing libraries such as Jest and React Testing Library.
-   - Write tests that are meaningful and cover important use cases.
 
 ## Resources
 
@@ -114,4 +105,3 @@ You are required to implement the following backend functionalities:
 
 - **Code Repository**: Provide access to your code via a Git repository (e.g., GitHub, GitLab).
 - **Readme File**: Include a `README.md` file with instructions on how to install dependencies, set up the database, run migrations (if any), and start both the backend and frontend servers.
-- **Testing Instructions**: Include instructions on how to run your unit tests.
