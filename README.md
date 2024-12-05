@@ -20,10 +20,10 @@ The server exposes several partial RESTful API endpoints:
 
 You are required to implement the following backend functionalities:
 
-- **Adders to User**
-  - Extend the existing user-related endpoints to include adders (metadata associated with the user).
-  - Query the adders from the database and include them in the user response.
-  - Ensure the adders are properly validated and formatted before returning to the frontend.
+- **Address to User**
+  - Extend the existing user-related endpoints to include address (metadata associated with the user).
+  - Query the address from the database and include them in the user response.
+  - Ensure the address are properly validated and formatted before returning to the frontend.
 - **Post Deletion**
   - Create an endpoint to delete a post by its ID.
   - Remove the post from the database upon successful deletion.
