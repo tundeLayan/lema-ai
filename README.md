@@ -11,7 +11,7 @@ The server utilizes an SQLite database (data.db) containing all relevant data, i
 The server exposes several partial RESTful API endpoints:
 
 - User Endpoints:
-  - GET /users: Returns a list of users with pagination support.
+  - GET /users: Returns a list of users with pagination support (e.g., /users?pageNumber=0&pageSize=10).
   - GET /users/count: Returns the total number of users.
 - Post Endpoint:
   - GET /posts: Returns posts filtered by a specific user ID, using the userId query parameter (e.g., /posts?userId={userId}).
