@@ -1,6 +1,7 @@
 # Web Developer Assignment
 
-You are about to implement a full-stack web application, comprising both backend and frontend components. The assignment involves extending a partially implemented Node backend server and developing a React frontend that interacts with the backend API.
+This full-stack assignment involves building a user management system where developers must extend a Node.js/SQLite backend for user and post operations, and create a React/TypeScript frontend that displays user data in a paginated table and allows for post management, all while following provided design specifications.
+
 
 ## Backend
 
@@ -10,11 +11,11 @@ A Node server written in TypeScript is provided.
 The server utilizes an SQLite database (data.db) containing all relevant data, including users posts and addresses.
 The server exposes several partial RESTful API endpoints:
 
-- User Endpoints:
-  - GET /users: Returns a list of users with pagination support.
-  - GET /users/count: Returns the total number of users.
-- Post Endpoint:
-  - GET /posts: Returns posts filtered by a specific user ID, using the userId query parameter (e.g., /posts?userId={userId}).
+User Endpoints:
+- `GET /users` -  Returns a list of users with pagination support.
+- `GET /users/count` - Returns the total number of users.
+Post Endpoint:
+- `GET /posts` - Returns posts filtered by a specific user ID, using the userId query parameter (e.g., /posts?userId={userId}).
 
 ### Backend Requirements
 
