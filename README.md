@@ -1,11 +1,13 @@
 # Web Developer Assignment
 
+You are about to implement a full-stack web application, comprising both backend and frontend components. The assignment involves extending a partially implemented Node backend server and developing a React frontend that interacts with the backend API.
+
 ## Backend
 
 ### Provided Backend
 
 A Node server written in TypeScript is provided.
-The server utilizes an SQLite database (data.db) containing all relevant data, including users posts and adders.
+The server utilizes an SQLite database (data.db) containing all relevant data, including users posts and addresses.
 The server exposes several partial RESTful API endpoints:
 
 - User Endpoints:
