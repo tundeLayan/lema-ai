@@ -3,6 +3,7 @@ import { addNewPostPayload } from '@/_module/components/dialogs/_module/types/ad
 export type TGetPostsResponse = {
     userId: string;
     data: Array<TPostData>;
+    next_page: number;
 };
 
 export type TPostData = {
@@ -15,7 +16,7 @@ export type TGetPostParams = {
     page: number;
     limit: number;
     id: string;
-    next_page: string;
+    next_page: number;
 };
 
 export type TCreateNewPostPayload = addNewPostPayload;

@@ -11,7 +11,7 @@ import routes from '@/_module/constants/routes';
 import useDisclosure from '@/_module/hooks/useDisclosure';
 import { RenderIf } from '@/_module/components/RenderIf';
 import CardSkeleton from './_module/components/CardSkeleton';
-import useDeletePost from './_module/hooks/useDeletePost';
+// import useDeletePost from './_module/hooks/useDeletePost';
 
 const Posts = () => {
     const { isOpen, onOpen, onClose } = useDisclosure({

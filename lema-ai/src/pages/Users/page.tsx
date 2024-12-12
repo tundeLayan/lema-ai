@@ -6,7 +6,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import Table from '../../_module/components/Table';
 import routes from '../../_module/constants/routes';
 import PaginationCustom from '@/_module/components/Pagination';
-import useGetUsers from './_module/hooks/useGetUsers';
+// import useGetUsers from './_module/hooks/useGetUsers';
 
 type TUserData = {
     fullname: string;

@@ -25,8 +25,8 @@ const useGetPosts = (filter: TGetPostParams) => {
                 next_page: pageParam,
             });
         },
-        initialPageParam: '',
-        getNextPageParam: (lastPage) => lastPage?.next_page,
+        initialPageParam: 0,
+        getNextPageParam: (lastPage) => lastPage.next_page,
         select: (data) => data?.pages.flatMap((page) => page.data),
     });
     return {
