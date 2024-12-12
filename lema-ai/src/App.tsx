@@ -10,6 +10,7 @@ import Loader from './_module/components/Loader/loader';
 const Posts = lazy(() => import('./pages/Posts/page'));
 const Users = lazy(() => import('./pages/Users/page'));
 const Home = lazy(() => import('./pages/page'));
+const NotFound = lazy(() => import('./pages/404/page'));
 
 function App() {
     return (
@@ -43,7 +44,7 @@ function App() {
                     {/* 404 */}
                     <Route
                         path="*"
-                        element={<>Not found</>}
+                        element={<NotFound />}
                     />
                 </Route>
             </Routes>
