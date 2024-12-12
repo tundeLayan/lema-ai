@@ -1,16 +1,13 @@
 import React from 'react';
-// import Image, { StaticImageData } from 'next/image';
 
 import cx from 'classnames';
 
 import { Button as ShadCNButton } from '@/_module/components/ui/button';
 import Loader from '../Loader/loader';
-// import { Loader } from "@/components";
 
 interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     label: string;
     variant?: 'primary' | 'neutral' | 'tertiary';
-
     icon?: React.ReactElement;
     iconClassName?: string;
     iconAfter?: string;
