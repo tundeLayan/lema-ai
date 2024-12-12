@@ -3,7 +3,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { userService } from '../services/users-service';
 import { TGetUsersParams } from '../types/users-types';
 
-const useGetPosts = (filter: TGetUsersParams) => {
+const useGetUsers = (filter: TGetUsersParams) => {
     const {
         data,
         error,
@@ -22,12 +22,12 @@ const useGetPosts = (filter: TGetUsersParams) => {
             const { pageParam } = args;
             return userService.getUsers({
                 ...filter,
-                next_page: pageParam,
+                pageNumber: pageParam,
             });
         },
-        initialPageParam: '',
-        getNextPageParam: (lastPage) => lastPage?.next_page,
-        select: (data) => data?.pages.flatMap((page) => page.data),
+        initialPageParam: 0,
+        getNextPageParam: (lastPage) => lastPage.next_page,
+        select: (data) => data?.pages.flatMap((page) => page.users),
     });
     return {
         data,
@@ -44,4 +44,4 @@ const useGetPosts = (filter: TGetUsersParams) => {
     };
 };
 
-export default useGetPosts;
+export default useGetUsers;

@@ -4,7 +4,7 @@ import { postsServices } from '../services/posts-service';
 import { TErrorResponse } from '@/_module/types/error-response';
 import { TGetPostsResponse } from '../types/posts-types';
 
-export const useDeletePost = () => {
+const useDeletePost = () => {
     const queryClient = useQueryClient();
     const { data, mutate, isPending, error, isError } = useMutation<
         TGetPostsResponse,
@@ -20,3 +20,5 @@ export const useDeletePost = () => {
     });
     return { data, mutate, isPending, error, isError };
 };
+
+export default useDeletePost;

@@ -1,13 +1,18 @@
 export type TGetUsersResponse = {
+    users: Array<TUserData>;
+    limit: number;
+    next_page: number;
+    page_number: number;
+};
+
+export type TUserData = {
     id: string;
-    next_page: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    data: Array<any>;
+    name: string;
+    email: string;
+    address: string;
 };
 
 export type TGetUsersParams = {
-    page: number;
-    limit: number;
-    id: string;
-    next_page: string;
+    pageNumber: number;
+    pageSize: number;
 };

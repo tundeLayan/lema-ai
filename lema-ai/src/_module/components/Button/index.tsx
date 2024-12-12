@@ -2,7 +2,7 @@ import React from 'react';
 
 import cx from 'classnames';
 
-import { Button as ShadCNButton } from '@/_module/components/ui/button';
+import { Button as ShadCNButton } from '../ui/button';
 import Loader from '../Loader/loader';
 
 interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
