@@ -6,5 +6,5 @@ export type TIconProps = React.SVGAttributes<SVGElement> & {
   strokeWidth?: string;
   className?: string;
   stroke?: string;
-  type?: 'filled' | 'outlined' | (string & {});
+  type?: "filled" | "outlined" | (string & {});
 };

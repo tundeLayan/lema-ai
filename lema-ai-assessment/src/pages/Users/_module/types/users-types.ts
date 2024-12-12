@@ -1,9 +1,9 @@
 export type TGetUsersResponse = {
-    id: string;
+  id: string;
 };
 
 export type TGetUsersParams = {
-    page: number;
-    limit: number;
-    id: string;
+  page: number;
+  limit: number;
+  id: string;
 };

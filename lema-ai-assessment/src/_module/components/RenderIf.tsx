@@ -1,16 +1,16 @@
-import { Fragment, type ReactNode } from 'react';
+import { Fragment, type ReactNode } from "react";
 
 type TProps = {
-    children: ReactNode;
-    condition: boolean;
+  children: ReactNode;
+  condition: boolean;
 };
 
 export function RenderIf(props: TProps) {
-    const { condition, children } = props;
+  const { condition, children } = props;
 
-    if (!condition) {
-        return null;
-    }
+  if (!condition) {
+    return null;
+  }
 
-    return <Fragment>{children}</Fragment>;
+  return <Fragment>{children}</Fragment>;
 }

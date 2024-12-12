@@ -1,7 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 
 type TDisclosureState = {
-    [key: string]: boolean;
+  [key: string]: boolean;
 };
 
 /**
@@ -10,22 +10,22 @@ type TDisclosureState = {
  * @returns
  */
 function useDisclosure(initialStates: TDisclosureState) {
-    const [isOpen, setIsOpen] = useState<TDisclosureState>(initialStates);
+  const [isOpen, setIsOpen] = useState<TDisclosureState>(initialStates);
 
-    const onClose = useCallback(
-        (key: string) => setIsOpen((prev) => ({ ...prev, [key]: false })),
-        []
-    );
-    const onOpen = useCallback(
-        (key: string) => setIsOpen((prev) => ({ ...prev, [key]: true })),
-        []
-    );
+  const onClose = useCallback(
+    (key: string) => setIsOpen((prev) => ({ ...prev, [key]: false })),
+    [],
+  );
+  const onOpen = useCallback(
+    (key: string) => setIsOpen((prev) => ({ ...prev, [key]: true })),
+    [],
+  );
 
-    const closeAllModals = useCallback(() => {
-        setIsOpen(initialStates);
-    }, []);
+  const closeAllModals = useCallback(() => {
+    setIsOpen(initialStates);
+  }, []);
 
-    return { isOpen, onOpen, onClose, closeAllModals };
+  return { isOpen, onOpen, onClose, closeAllModals };
 }
 
 export default useDisclosure;

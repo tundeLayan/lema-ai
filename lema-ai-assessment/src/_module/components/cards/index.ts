@@ -1,1 +1,1 @@
-export { default as PostDetailCard } from './PostDetailCard';
+export { default as PostDetailCard } from "./PostDetailCard";
