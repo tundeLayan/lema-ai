@@ -9,7 +9,7 @@ const useDeletePost = () => {
     const { data, mutate, isPending, error, isError } = useMutation<
         TGetPostsResponse,
         TErrorResponse,
-        string
+        { id: string; userId: string }
     >({
         mutationFn: postsServices.deletePost,
         onSuccess: async () => {

@@ -1,10 +1,10 @@
 export const users = {
-  getUsers: ``,
-  getUsersCount: ``,
+    getUsers: `/users`,
+    getUsersCount: `/users/count`,
 };
 
 export const posts = {
-  getPosts: (userId: string) => `//${userId}`,
-  deletePost: (userId: string) => `//${userId}`,
-  addNewPost: (userId: string) => `//${userId}`,
+    getPosts: `/posts`,
+    deletePost: (id: string) => `/posts/${id}`,
+    addNewPost: `/posts`,
 };

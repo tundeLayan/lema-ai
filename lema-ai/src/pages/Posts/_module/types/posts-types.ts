@@ -1,10 +1,22 @@
 import { addNewPostPayload } from '@/_module/components/dialogs/_module/types/add-new-post-modal-types';
 
 export type TGetPostsResponse = {
-    userId: string;
-    data: Array<TPostData>;
+    id: string;
+    user_id: string;
+    title: string;
+    body: string;
+    created_at: string;
+
+    // pending when pagination is added
     next_page: number;
 };
+
+// pending when pagination is added
+// {
+//     userId: string;
+//     data: Array<TPostData>;
+//     next_page: number;
+// };
 
 export type TPostData = {
     title: string;

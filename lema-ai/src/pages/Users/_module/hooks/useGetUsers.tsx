@@ -25,9 +25,9 @@ const useGetUsers = (filter: TGetUsersParams) => {
                 pageNumber: pageParam,
             });
         },
-        initialPageParam: 0,
+        initialPageParam: filter.pageNumber,
         getNextPageParam: (lastPage) => lastPage.next_page,
-        select: (data) => data?.pages.flatMap((page) => page.users),
+        select: (data) => data.pages.flatMap((page) => page),
     });
     return {
         data,

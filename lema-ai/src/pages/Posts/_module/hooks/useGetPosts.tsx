@@ -1,9 +1,8 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { postsServices } from '../services/posts-service';
-import { TGetPostParams } from '../types/posts-types';
 
-const useGetPosts = (filter: TGetPostParams) => {
+const useGetPosts = (filter: { userId: string }) => {
     const {
         data,
         error,
@@ -18,16 +17,14 @@ const useGetPosts = (filter: TGetPostParams) => {
         isPending,
     } = useInfiniteQuery({
         queryKey: ['posts', filter],
-        queryFn: async (args) => {
-            const { pageParam } = args;
+        queryFn: async () => {
             return postsServices.getPosts({
                 ...filter,
-                next_page: pageParam,
             });
         },
-        initialPageParam: 0,
+        initialPageParam: 1,
         getNextPageParam: (lastPage) => lastPage.next_page,
-        select: (data) => data?.pages.flatMap((page) => page.data),
+        select: (data) => data?.pages.flatMap((page) => page),
     });
     return {
         data,

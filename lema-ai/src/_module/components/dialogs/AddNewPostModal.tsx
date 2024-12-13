@@ -2,6 +2,7 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useParams } from 'react-router-dom';
 
 import { TModalProps } from '@/_module/types/modal';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
@@ -13,43 +14,45 @@ import {
 import FormInput from '../FormInput';
 import FormtextArea from '../FormTextarea';
 import Button from '../Button';
+import { useCreatePost } from '@/pages/Posts/_module/hooks/useCreatePost';
 
-function AddNewPostModal(props: TModalProps & { onHandleSubmit: () => void }) {
-    const { isOpen, onClose = () => {}, onHandleSubmit } = props;
+function AddNewPostModal(props: TModalProps) {
+    const { isOpen, onClose = () => {} } = props;
+    const params = useParams();
+    const userId = params.userId as string;
 
-    // const { mutate, isPending } = useCreatePost();
+    const { mutate, isPending } = useCreatePost();
 
     const form = useForm<addNewPostPayload>({
         resolver: zodResolver(addNewPostSchema),
         mode: 'onChange',
         defaultValues: {
-            content: '',
+            body: '',
             title: '',
         },
     });
 
     const {
         formState: { errors },
-        // watch,
         reset,
         control,
     } = form;
 
-    const onSubmit = (data: addNewPostPayload) => {
-        console.log(data);
-        onHandleSubmit();
-        closeModal();
-        // mutate(data, {
-        //   onSuccess: () => {
-        //     reset();
-        //     setIsModalToggle?.();
-        //   },
-        // });
-    };
-
     const closeModal = () => {
         onClose();
         reset();
+    };
+
+    const onSubmit = (data: addNewPostPayload) => {
+        const payload = {
+            ...data,
+            userId,
+        };
+        mutate(payload, {
+            onSuccess: async () => {
+                closeModal();
+            },
+        });
     };
 
     return (
@@ -89,11 +92,11 @@ function AddNewPostModal(props: TModalProps & { onHandleSubmit: () => void }) {
                             />
                             <FormField
                                 control={control}
-                                name="content"
+                                name="body"
                                 render={({ field }) => (
                                     <FormtextArea
-                                        label="Post content"
-                                        error={errors.content}
+                                        label="Post body"
+                                        error={errors.body}
                                         placeholder="Write something mind-blowing"
                                         containerClass="mb-4"
                                         {...field}
@@ -102,7 +105,6 @@ function AddNewPostModal(props: TModalProps & { onHandleSubmit: () => void }) {
                             />
                             <div className="flex justify-end gap-[8px]">
                                 <Button
-                                    disabled={false}
                                     type="button"
                                     onClick={closeModal}
                                     variant="neutral"
@@ -111,12 +113,12 @@ function AddNewPostModal(props: TModalProps & { onHandleSubmit: () => void }) {
                                     size="sm"
                                 />
                                 <Button
-                                    disabled={false}
+                                    disabled={isPending}
                                     type="submit"
                                     label="Publish"
                                     size="sm"
                                     className="w-fit"
-                                    loading={false}
+                                    loading={isPending}
                                 />
                             </div>
                         </form>

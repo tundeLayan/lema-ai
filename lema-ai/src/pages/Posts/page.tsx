@@ -1,6 +1,4 @@
-import { useState } from 'react';
-
-import { v4 as uuidv4 } from 'uuid';
+import { useParams } from 'react-router-dom';
 // import { AnimatePresence } from 'framer-motion';
 
 import BackButton from '@/_module/components/BackButton';
@@ -11,24 +9,32 @@ import routes from '@/_module/constants/routes';
 import useDisclosure from '@/_module/hooks/useDisclosure';
 import { RenderIf } from '@/_module/components/RenderIf';
 import CardSkeleton from './_module/components/CardSkeleton';
-// import useDeletePost from './_module/hooks/useDeletePost';
+import useGetPosts from './_module/hooks/useGetPosts';
+import useDeletePost from './_module/hooks/useDeletePost';
+import { showToast } from '@/_module/utils/show-toast';
 
 const Posts = () => {
+    const params = useParams();
+    const userId = params.userId as string;
+
     const { isOpen, onOpen, onClose } = useDisclosure({
         newPostModal: false,
     });
-    const [posts, setPosts] = useState([1, 2, 3, 4, 5]);
-    const isPending = false;
 
-    // const { mutate, isPending } = useDeletePost();
+    const { mutate /*isPending: deleteIsPending */ } = useDeletePost();
+    const { data, isPending } = useGetPosts({ userId: userId });
 
-    const handleDelete = (/*id?: string*/) => {
-        const newArr = posts.slice(0, -1);
-        setPosts(newArr);
-        // mutate('', {
-        //   onSuccess: () => {}
-        // })
+    const handleDelete = (id: string) => {
+        mutate(
+            { id, userId },
+            {
+                onSuccess: () => {
+                    showToast('Post deleted successfully', 'success');
+                },
+            }
+        );
     };
+
     return (
         <div className="py-6">
             <header className="space-y-4 mb-6">
@@ -38,32 +44,28 @@ const Posts = () => {
                 </h5>
                 <p className="text-primary-100 text-sm font-normal leading-5">
                     james.sunderland@acme.corp •{' '}
-                    <span className="font-medium">{posts.length} Posts</span>{' '}
+                    <span className="font-medium">
+                        {data?.length ?? 0} Posts
+                    </span>{' '}
                 </p>
             </header>
             <section className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[23px] gap-y-6">
                 <AddNewPostCard onOpen={() => onOpen('newPostModal')} />
-                <RenderIf condition={posts.length > 0}>
-                    {/* <ul>
-                      <AnimatePresence
-                          initial={false}
-                          mode="popLayout"
-                      > */}
-                    {posts.map(() => {
-                        const id = uuidv4();
+                <RenderIf condition={(data ?? []).length > 0}>
+                    {(data ?? []).map((post) => {
                         return (
                             <PostDetailCard
-                                onDelete={() => handleDelete()}
-                                key={id}
+                                onDelete={() => handleDelete(post.id)}
+                                key={post.id}
+                                title={post.title}
+                                content={post.body}
                             />
                         );
                     })}
-                    {/* </AnimatePresence>
-                  </ul> */}
                 </RenderIf>
-                <RenderIf condition={posts.length === 0 && isPending}>
-                    {Array.from({ length: 5 }, () => null).map(() => (
-                        <CardSkeleton />
+                <RenderIf condition={isPending}>
+                    {Array.from({ length: 5 }, () => null).map((_, idx) => (
+                        <CardSkeleton key={idx} />
                     ))}
                 </RenderIf>
             </section>
@@ -71,7 +73,6 @@ const Posts = () => {
                 <AddNewPostModal
                     isOpen={isOpen.newPostModal}
                     onClose={() => onClose('newPostModal')}
-                    onHandleSubmit={() => setPosts((prev) => [...prev, 1])}
                 />
             )}
         </div>
