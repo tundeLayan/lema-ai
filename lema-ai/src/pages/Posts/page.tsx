@@ -10,8 +10,6 @@ import useDisclosure from '@/_module/hooks/useDisclosure';
 import { RenderIf } from '@/_module/components/RenderIf';
 import CardSkeleton from './_module/components/CardSkeleton';
 import useGetPosts from './_module/hooks/useGetPosts';
-import useDeletePost from './_module/hooks/useDeletePost';
-import { showToast } from '@/_module/utils/show-toast';
 
 const Posts = () => {
     const params = useParams();
@@ -21,19 +19,7 @@ const Posts = () => {
         newPostModal: false,
     });
 
-    const { mutate /*isPending: deleteIsPending */ } = useDeletePost();
     const { data, isPending } = useGetPosts({ userId: userId });
-
-    const handleDelete = (id: string) => {
-        mutate(
-            { id, userId },
-            {
-                onSuccess: () => {
-                    showToast('Post deleted successfully', 'success');
-                },
-            }
-        );
-    };
 
     return (
         <div className="py-6">
@@ -55,10 +41,10 @@ const Posts = () => {
                     {(data ?? []).map((post) => {
                         return (
                             <PostDetailCard
-                                onDelete={() => handleDelete(post.id)}
                                 key={post.id}
                                 title={post.title}
                                 content={post.body}
+                                id={post.id}
                             />
                         );
                     })}

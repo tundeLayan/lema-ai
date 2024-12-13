@@ -113,7 +113,6 @@ function AddNewPostModal(props: TModalProps) {
                                     size="sm"
                                 />
                                 <Button
-                                    disabled={isPending}
                                     type="submit"
                                     label="Publish"
                                     size="sm"
