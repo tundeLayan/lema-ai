@@ -106,7 +106,6 @@ This will start the React application on \`http://localhost:5173\`.
 
 ## Limitations
 
--   Pagination on the backend was not implemented completely, but the frontend is handling it statically
 -   The live backend API might be slow because it is a free plan
 -   On the posts page, the user data is not coming so I am using a static data for the user name
 
