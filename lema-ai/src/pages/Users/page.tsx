@@ -7,6 +7,7 @@ import Table from '../../_module/components/Table';
 import routes from '../../_module/constants/routes';
 import PaginationCustom from '@/_module/components/Pagination';
 import useGetUsers from './_module/hooks/useGetUsers';
+import useGetUserCount from './_module/hooks/useGetUserCount';
 
 type TUserData = {
     name: string;
@@ -85,8 +86,9 @@ const Users = () => {
 
     const pageNumber = parseInt((searchParams.get('page') as string) || '1');
     const pageSize = parseInt((searchParams.get('pageSize') as string) || '4');
-    const totalPosts = 40;
     const { data: DataFromAPI, status } = useGetUsers({ pageNumber, pageSize });
+    const { data: userCount } = useGetUserCount();
+    const totalPosts = userCount?.count ?? 0;
 
     const formattedData = useMemo(() => {
         if (DataFromAPI) {
