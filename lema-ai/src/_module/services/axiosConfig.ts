@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3001',
+    baseURL: import.meta.env.VITE_SERVER_BASE_URL ?? 'http://localhost:3001',
     timeout: 1000 * 60 * 2,
     timeoutErrorMessage: 'Request timed out',
     headers: {

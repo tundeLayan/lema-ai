@@ -59,7 +59,7 @@ yarn install
 Navigate to the \`lema-ai\` folder and install dependencies:
 
 ```bash
-cd ../lema-ai
+cd lema-ai
 yarn install
 ```
 
@@ -83,7 +83,7 @@ This will start the server on \`http://localhost:3001\`.
 Start the frontend application by running the following commands:
 
 ```bash
-cd ../lema-ai
+cd lema-ai
 yarn dev
 ```
 
