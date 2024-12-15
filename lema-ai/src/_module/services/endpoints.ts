@@ -1,6 +1,7 @@
 export const users = {
     getUsers: `/users`,
     getUsersCount: `/users/count`,
+    getUserById: (userId: string) => `/users/${userId}`,
 };
 
 export const posts = {

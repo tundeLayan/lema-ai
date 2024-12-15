@@ -1,20 +1,36 @@
 export type TGetUsersResponse = TUserData;
-// Pending when pagination is added to backend
-{
-    // users: Array<TUserData>;
-    // limit: number;
-    // next_page: number;
-    // page_number: number;
-}
 
 export type TUserData = {
     id: string;
     name: string;
+    username: string;
     email: string;
-    address: string;
-    // TODO: take out when we add pagination
+    phone: string;
+    address?: Address;
+
     next_page: number;
 };
+
+export type TUsersData = {
+    id: string;
+    name: string;
+    username: string;
+    email: string;
+    phone: string;
+    street: string;
+    city: string;
+    state: string;
+    zipcode: string;
+
+    next_page: number;
+};
+
+export interface Address {
+    street: string;
+    city: string;
+    state: string;
+    zipcode: string;
+}
 
 export type TGetUsersParams = {
     pageNumber: number;

@@ -4,10 +4,14 @@ import { showToast } from '@/_module/utils/show-toast';
 import { transformErrorResponse } from '@/_module/utils/transform-error-response';
 import { axiosInstance } from '@/_module/services/axiosConfig';
 import { users } from '@/_module/services/endpoints';
-import { TGetUsersParams, TGetUsersResponse } from '../types/users-types';
+import {
+    TGetUsersParams,
+    TGetUsersResponse,
+    TUsersData,
+} from '../types/users-types';
 
 export const userService = {
-    async getUsers(param: TGetUsersParams): Promise<TGetUsersResponse> {
+    async getUsers(param: TGetUsersParams): Promise<TUsersData> {
         let params;
 
         if (param) {
@@ -18,7 +22,7 @@ export const userService = {
             : users.getUsers;
 
         try {
-            const response = await axiosInstance.get<TGetUsersResponse>(url);
+            const response = await axiosInstance.get<TUsersData>(url);
             return response.data;
         } catch (error) {
             showToast(transformErrorResponse(error)?.message, 'error');
@@ -29,6 +33,16 @@ export const userService = {
         const url = users.getUsersCount;
         try {
             const response = await axiosInstance.get<{ count: number }>(url);
+            return response.data;
+        } catch (error) {
+            showToast(transformErrorResponse(error)?.message, 'error');
+            throw transformErrorResponse(error);
+        }
+    },
+    async getUserById(userId: string): Promise<TGetUsersResponse> {
+        const url = users.getUserById(userId);
+        try {
+            const response = await axiosInstance.get<TGetUsersResponse>(url);
             return response.data;
         } catch (error) {
             showToast(transformErrorResponse(error)?.message, 'error');

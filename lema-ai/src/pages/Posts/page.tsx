@@ -10,6 +10,8 @@ import useDisclosure from '@/_module/hooks/useDisclosure';
 import { RenderIf } from '@/_module/components/RenderIf';
 import CardSkeleton from './_module/components/CardSkeleton';
 import useGetPosts from './_module/hooks/useGetPosts';
+import useGetUserById from '../Users/_module/hooks/useGetUserById';
+import { Skeleton } from '@/_module/components/ui/skeleton';
 
 const Posts = () => {
     const params = useParams();
@@ -20,22 +22,32 @@ const Posts = () => {
     });
 
     const { data, isPending } = useGetPosts({ userId: userId });
+    const { data: userData, isPending: userDataIsPending } =
+        useGetUserById(userId);
 
     return (
         <div className="py-6">
             <header className="space-y-4 mb-6">
                 <BackButton to={routes.dashboard.users.path} />
                 <h5 className="text-primary-200 text-4xl font-medium leading-[43.57px] tracking-[-0.02em]">
-                    James Sunderland
+                    {userDataIsPending ? (
+                        <Skeleton className="h-[44px] w-8/12 md:w-4/12 rounded-sm" />
+                    ) : (
+                        userData?.name
+                    )}
                 </h5>
                 <p className="text-primary-100 text-sm font-normal leading-5">
-                    james.sunderland@acme.corp •{' '}
+                    {userDataIsPending ? (
+                        <Skeleton className="h-[20px] w-8/12 md:w-3/12 rounded-sm mb-2" />
+                    ) : (
+                        <>{userData?.email} • </>
+                    )}
                     <span className="font-medium">
                         {data?.length ?? 0} Posts
                     </span>{' '}
                 </p>
             </header>
-            <section className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[23px] gap-y-6">
+            <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-[23px] gap-y-6">
                 <AddNewPostCard onOpen={() => onOpen('newPostModal')} />
                 <RenderIf condition={(data ?? []).length > 0}>
                     {(data ?? []).map((post) => {

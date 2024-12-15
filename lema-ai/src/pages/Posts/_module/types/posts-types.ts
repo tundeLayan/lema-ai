@@ -11,13 +11,6 @@ export type TGetPostsResponse = {
     next_page: number;
 };
 
-// pending when pagination is added
-// {
-//     userId: string;
-//     data: Array<TPostData>;
-//     next_page: number;
-// };
-
 export type TPostData = {
     title: string;
     content: string;
