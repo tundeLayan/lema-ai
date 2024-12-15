@@ -12,6 +12,7 @@ import CardSkeleton from './_module/components/CardSkeleton';
 import useGetPosts from './_module/hooks/useGetPosts';
 import useGetUserById from '../Users/_module/hooks/useGetUserById';
 import { Skeleton } from '@/_module/components/ui/skeleton';
+import classNames from 'classnames';
 
 const Posts = () => {
     const params = useParams();
@@ -36,9 +37,16 @@ const Posts = () => {
                         userData?.name
                     )}
                 </h5>
-                <p className="text-primary-100 text-sm font-normal leading-5">
+                <p
+                    className={classNames(
+                        'text-primary-100 text-sm font-normal leading-5',
+                        {
+                            'flex items-center gap-2': userDataIsPending,
+                        }
+                    )}
+                >
                     {userDataIsPending ? (
-                        <Skeleton className="h-[20px] w-8/12 md:w-3/12 rounded-sm mb-2" />
+                        <Skeleton className="h-[20px] w-8/12 md:w-3/12 rounded-sm mb-2 inline-block" />
                     ) : (
                         <>{userData?.email} • </>
                     )}
